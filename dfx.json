@@ -1,0 +1,29 @@
+{
+  "canisters": {
+    "apuntes_backend": {
+      "main": "src/apuntes_backend/main.mo",
+      "type": "motoko"
+    },
+    "apuntes_frontend": {
+      "dependencies": [
+        "apuntes_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/apuntes_frontend/src/index.html"
+      },
+      "source": [
+        "src/apuntes_frontend/assets",
+        "dist/apuntes_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
