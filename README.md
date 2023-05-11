@@ -115,6 +115,95 @@ var variable2 : String = "String";
 // según el primer valor asignado.
 ```
 
+## FUNCIONES
+Las funciones pueden existir tanto dentro como fuera de los actors
+de momento nos enfocaremos en las que pueden dentro de los actors.
+
+Tienen un encapsulamiento de dos tipos 'public' y 'private'.
+Usamos las public para interactuar con otros cannisters, y deben
+ser de tipo async. 
+
+Las private las usaremos como soporte para las publics
+
+```
+actor {
+    var count : Nat = 0;
+
+    // esta función está siendo usada como función auxiliar 
+    // de la principal
+    private func add(n : Nat, m : Nat) : Nat {
+        return (n + m)
+    };
+
+    // El uso de async es por la espera de 'n' que recibiremos como argumento
+    // pero debido a que habrá un delay siempre indicamos con asyn que debemos esperar
+    // el Nat a la derecha de async es lo que devolveremos asincrónicamente
+    public func addCount(n : Nat) : async Nat {
+
+        // hacemos uso de la función add()
+        let newCount = add(count,n);
+        count := newCount;
+
+        // el uso de return es opcional, de hecho,
+        // podríamos solo poner count y con eso ya sería un return
+        return count;
+    };
+}```
+
+
+## TIPOS DE DATOS
+
+Tenemos varios, al rededor de 8-9
+
+Bool, Nat (que son los Int sin firmar), Int, Float32 (que son de precision simple), Float64 (que son de doble precisión),
+Text (es el String de motoko), Char.
+
+```
+  let isTrue : Bool = True;
+
+  let number : Int = 42;
+  let notSignedNumber : Nat 10;
+
+  let float32Number : Float32 = 3.14;
+  let float64Number : Float64 = 2.71828;
+
+  let greeting: Text = "Hello, World!";
+  // este greeting # es una variable concatenada a un string " Welcome!"
+  let concatenated: Text = greeting # " Welcome!";
+
+  let firstChar: Char = "A";
+  let secondChar: Char = "B";
+```
+
+## ESTRUCTURAS DE DATOS
+En estas tenemos las listas y los arrays
+
+Lists, son dinámicas y permiten una concatenación y manipulación
+bastante eficiente.
+
+Arrays, por otro lado, al igual que en java son de tamaño
+fijo y para redefinir su tamaño debes crear uno nuevo
+con el nuevo tamaño y luego reasignar este array
+a la variable que almacenaba el viejo array.
+
+```
+  let myList: [Int] = [1, 2, 3, 4, 5];
+  let myArray: Array<Int> = Array{5}(0);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
